@@ -88,7 +88,7 @@ func DefaultSort(cards []Card) []Card {
 // argument is: func(cards []Card) func(i, j int) bool, which is a less function
 // it takes in a slice of cards and returns a Less function.
 // It works like the above DefaultSort, but with the difference
-// that we pass in a custom less function
+// that we pass in a custom less function for even more custom sorting
 func Sort(less func(cards []Card) func(i, j int) bool) func([]Card) []Card {
 	return func(cards []Card) []Card {
 		sort.Slice(cards, less(cards))
