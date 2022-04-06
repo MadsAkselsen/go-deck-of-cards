@@ -117,12 +117,17 @@ func absRank(c Card) int {
 	return int(c.Suit) * int(maxRank) + int(c.Rank)
 }
 
+var shuffleRand = rand.New(rand.NewSource(time.Now().Unix()))
+
 func Shuffle(cards []Card) []Card {
 	ret := make([]Card, len(cards))
-	r := rand.New(rand.NewSource(time.Now().Unix()))
 	// Perm is is a method that shuffles items in an array.
 	// For example, [1,2,3,4,5] can become [1,3,5,2,4]
-	perm := r.Perm(len(cards))
+	// the 'shuffleRand' is the source, and the source dictates
+	// the resulting order. If the source is always the same, the
+	// order is always the same. But with the above provided time.Now()
+	// the source is always different and thus the shuffle is always different.
+	perm := shuffleRand.Perm(len(cards))
 	// assigning the shuffled indexes to the cards array
 	for i, j := range perm {
 		ret[i] = cards[j]
