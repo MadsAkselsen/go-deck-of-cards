@@ -141,3 +141,16 @@ func Jokers(n int) func([]Card) []Card {
 		return cards
 	}
 }
+
+func Filter(f func(card Card) bool) func([]Card) []Card {
+	return func(cards []Card) []Card {
+		var ret []Card
+		for _, c := range cards {
+			// if false then the card should not be removed. 'ret' is all the cards we want to keep
+			if !f(c) {
+				ret = append(ret, c)
+			}
+		}
+		return ret
+	}
+}
