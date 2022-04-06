@@ -154,3 +154,14 @@ func Filter(f func(card Card) bool) func([]Card) []Card {
 		return ret
 	}
 }
+
+// multiply the cards
+func Deck(n int) func([]Card) []Card {
+	return func(cards []Card) []Card {
+		var ret []Card
+		for i := 0; i < n; i++ {
+			ret = append(ret, cards...)
+		}
+		return ret
+	}
+}
